@@ -1,9 +1,11 @@
 import React from 'react';
-import './CategoryCards.css';
+import './CategoryCard.css';
 const CategoryCard = (props) => {
     return(
         <div className = "cat-card">
-            <h4>{props.categoryName}</h4>
+            <p>{props.categoryName}</p>
         </div>
     );
 };
+
+export default CategoryCard;
