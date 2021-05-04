@@ -1,8 +1,5 @@
 .cat-card{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 130px;
+    width: 260px;
     height: 130px;
     background-color: rgb(5, 56, 107);
     color: rgb(245, 238, 225);
@@ -11,14 +8,11 @@
     transition: 0.6s;
     font-size: 26px;
     cursor: pointer;
-}
-.cat-card p{
-    width: 90%;
     text-align: center;
+    outline: none;
 }
 .cat-card:hover{
-    width: 135px;
-    height: 135px;
-    box-shadow: 3px 4px 10px rgb(106, 105, 105);
+    background-color: rgb(6, 81, 156);
+    box-shadow: 6px 8px 10px rgb(106, 105, 105);
     font-size: 27px;
 }

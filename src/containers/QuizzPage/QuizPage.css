@@ -1,5 +1,13 @@
 .QuizPage{
     width: 100%;
     background-color: rgb(245, 238, 225);
-    height: 400px;
+}
+.grid{
+    margin: 0 auto;
+    width: 80%;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: repeat(6,1fr);
+    row-gap: 10px;
+
 }
