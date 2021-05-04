@@ -2,9 +2,9 @@ import React from 'react';
 import './CategoryCard.css';
 const CategoryCard = (props) => {
     return(
-        <div className = "cat-card">
-            <p>{props.categoryName}</p>
-        </div>
+        <button onClick = {props.click} className = "cat-card">
+            {props.categoryName}
+        </button>
     );
 };
 
