@@ -3,6 +3,9 @@ import './Header.css';
 const Header = () => {
     return(
         <div className = "head">
+            <div className = "logo">
+                <h1 className = "title" >QuizzMe</h1>
+            </div>
         </div>
     );
 };

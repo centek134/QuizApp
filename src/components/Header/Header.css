@@ -1,0 +1,16 @@
+.head{
+    width: 100%;
+    height: 120px;
+}
+.head .logo{
+    background-image: url('../../images/logo-big.png');
+    width: 295px;
+    height: 120px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.logo .title{
+    color: rgb(245, 238, 225);
+    text-align: center;
+}
