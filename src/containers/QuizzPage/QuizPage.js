@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './QuizPage.css';
 import Question from '../../components/Question/Question.js';
 import CategoryCard from '../../components/CategoryCard/CategoryCard.js';
+import Header from '../../components/Header/Header.js';
 
 
 
@@ -26,31 +27,67 @@ class QuizPage extends Component {
     };
 
     state ={
-        category: []
+        category: [],
+        questionsData: [],
+        startQuiz: false
     };
 
 
     fetchQuestions = (questionId) => {
-        fetch(`https://opentdb.com/api.php?amount=10&category=${questionId}`)
+        fetch(`https://opentdb.com/api.php?amount=10&category=${questionId}&type=multiple`)
         .then(result => result.json())
-        .then(data => console.log(data))
+        .then(data => {
+            console.log(data);
+            let questionInfo = [];
+            for(let item of data.results){
+                questionInfo.push({
+                    question: decodeURI(item.question),
+                    answer: [item.correct_answer, ...item.incorrect_answers]
+                })
+            }
+            this.setState({
+                questionsData: questionInfo,
+                startQuiz: true
+            })
+        });
     }
 
 
     render = () =>{
+        
+
         return(
             <div className = "QuizPage">
-                <Question/>
-                <main className = 'grid'>
-                    {this.state.category.map(index => {
-                    return(
-                    <div key = {index.id} className = "grid-item">
-                        <CategoryCard categoryName = {index.name} click = {() => this.fetchQuestions(index.id)}/>
-                    </div>
-                    )
-                    })}
+                <Header/>
+                {
+                    this.state.startQuiz? 
+                    <main className = "questions-page">
+                        {this.state.questionsData.map( (index,i) => {
+                            return(
+                                <Question
+                                    key ={i}
+                                    num = {i + 1}
+                                    question = {index.question}
+                                    ans1 = {index.answer[0]}
+                                    ans2 = {index.answer[1]}
+                                    ans3 = {index.answer[2]}
+                                    ans4 = {index.answer[3]}
+                                />
+                            )
+                        })}
+                    </main>
+                     :
+                    <main className = 'grid'>
+                        {this.state.category.map(index => {
+                        return(
+                        <div key = {index.id} className = "grid-item">
+                            <CategoryCard categoryName = {index.name} click = {() => this.fetchQuestions(index.id)}/>
+                        </div>
+                        );
+                        })}
                 </main>
-                <button onClick = {() => console.log(this.state.category)}> fetch data test</button>
+                }
+                <button onClick = {() => this.setState({startQuiz: !this.state.startQuiz})}> fetch data test</button>
             </div>
         );
     };
