@@ -4,13 +4,13 @@ import './Question.css';
 const Question = (props) => {
     return(
         <article className = "question">
-            <h3>Question number #1</h3>
-            <h2>There is your question</h2>
+            <h3>Question number #{props.num}</h3>
+            <h2>{props.question}</h2>
             <div className = "btns">
-                <button onClick = {(e) => console.log(e.target)}>Answer nr 1</button>
-                <button onClick = {(e) => console.log(e.target)}>Answer nr 2</button>
-                <button onClick = {(e) => console.log(e.target)}>Answer nr 3</button>
-                <button onClick = {(e) => console.log(e.target)}>Answer nr 4</button>
+                <button onClick = {(e) => console.log(e.target)}>{props.ans1}</button>
+                <button onClick = {(e) => console.log(e.target)}>{props.ans2}</button>
+                <button onClick = {(e) => console.log(e.target)}>{props.ans3}</button>
+                <button onClick = {(e) => console.log(e.target)}>{props.ans4}</button>
             </div>
         </article>
     );
