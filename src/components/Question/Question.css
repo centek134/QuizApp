@@ -1,8 +1,8 @@
 .question{
-    width: 900px;
+    max-width: 900px;
     border-radius: 10px;
     background-color: rgb(255, 255, 255);
-    
+    margin: 30px auto;
 }
 .question h3{
     padding: 10px 0 10px 25px;
@@ -10,22 +10,22 @@
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     background-color: rgb(39, 68, 228); /* rgb(39, 68, 228) */  /* rgb(39, 68, 228) */
-    
 }
-
 .question h2{
     width: 100%;
     padding: 10px 0 0 10px;
 }
 .question .btns{
     display: flex;
-    justify-content: space-around;
     align-items: center;
+    flex-flow: column;
     width: 100%;
-    padding: 50px 0;
+    padding: 50px 0 10px 0;
 }
 .question .btns button{
-    padding: 10px 20px;
+    width: 100%;
+    margin: 1px auto;
+    padding: 10px 0;
     font-size: 18px;
     font-weight: 700;
     color:#fff;
