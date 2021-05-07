@@ -3,9 +3,9 @@
     height: 120px;
 }
 .head .logo{
-    background-image: url('../../images/logo-big.png');
-    width: 295px;
-    height: 120px;
+    background-image: url('../../images/logo-small.png');
+    width: 270px;
+    height: 110px;
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
