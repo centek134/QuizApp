@@ -33,6 +33,16 @@ class QuizPage extends Component {
     };
 
 
+    replaceHtmlEntities = (word) => {
+       return word
+       .replace(/&quot;/g,'"')
+       .replace(/&#039;/g, "'")
+       .replace(/&amp;/g,"&")
+       .replace(/&rsque;/g,"'")
+       .replace(/&oacute;/g, 'Ó');
+        
+    }
+
     fetchQuestions = (questionId) => {
         fetch(`https://opentdb.com/api.php?amount=10&category=${questionId}&type=multiple`)
         .then(result => result.json())
@@ -41,14 +51,17 @@ class QuizPage extends Component {
             let questionInfo = [];
             for(let item of data.results){
                 questionInfo.push({
-                    question: decodeURI(item.question),
-                    answer: [item.correct_answer, ...item.incorrect_answers]
-                })
-            }
+                    question: this.replaceHtmlEntities(item.question),
+                    answer: [
+                        this.replaceHtmlEntities(item.correct_answer),
+                        ...item.incorrect_answers.map(i => this.replaceHtmlEntities(i))
+                    ]
+                });
+            };
             this.setState({
                 questionsData: questionInfo,
                 startQuiz: true
-            })
+            });
         });
     }
 
