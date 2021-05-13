@@ -7,10 +7,7 @@ const Question = (props) => {
             <h3>Question number #{props.num}</h3>
             <h2>{props.question}</h2>
             <div className = "btns">
-                <button onClick = {(e) => console.log(e.target)}>{props.ans1}</button>
-                <button onClick = {(e) => console.log(e.target)}>{props.ans2}</button>
-                <button onClick = {(e) => console.log(e.target)}>{props.ans3}</button>
-                <button onClick = {(e) => console.log(e.target)}>{props.ans4}</button>
+                {props.ans.map((answer, i) => <button key = {i} onClick = {props.clicked}>{answer}</button>)}
             </div>
         </article>
     );
