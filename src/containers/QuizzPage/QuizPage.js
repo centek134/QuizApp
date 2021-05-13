@@ -63,8 +63,18 @@ class QuizPage extends Component {
                 startQuiz: true
             });
         });
-    }
+    };
 
+    questionButtonHandler = (e) => {
+        e.target.classList.add("active");
+        let parent = document.querySelector('.active').parentNode;
+        let child = parent.children;
+        console.log(child);
+        for (let btn of child){
+            btn.classList.remove("active")
+        }
+        e.target.classList.add("active");
+    }
 
     render = () =>{
         
@@ -81,10 +91,12 @@ class QuizPage extends Component {
                                     key ={i}
                                     num = {i + 1}
                                     question = {index.question}
+                                    ans = {index.answer}
                                     ans1 = {index.answer[0]}
                                     ans2 = {index.answer[1]}
                                     ans3 = {index.answer[2]}
                                     ans4 = {index.answer[3]}
+                                    clicked = {(event) => this.questionButtonHandler(event)}
                                 />
                             )
                         })}
