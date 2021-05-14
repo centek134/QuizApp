@@ -29,9 +29,9 @@ class QuizPage extends Component {
     state ={
         category: [],
         questionsData: [],
-        startQuiz: false
-    };
-
+        startQuiz: false,
+        answers:new Array(10)
+    }
 
     replaceHtmlEntities = (word) => {
        return word
@@ -65,15 +65,14 @@ class QuizPage extends Component {
         });
     };
 
-    questionButtonHandler = (e) => {
-        e.target.classList.add("active");
-        let parent = document.querySelector('.active').parentNode;
-        let child = parent.children;
-        console.log(child);
-        for (let btn of child){
-            btn.classList.remove("active")
-        }
-        e.target.classList.add("active");
+    questionButtonHandler = (e,i) => {
+        console.log(i,e.target.value)
+        e.target.classList.toggle("active");
+        let items = [...this.state.answers];
+        items[i] = e.target.value;
+        this.setState({answers:items});
+        console.log(this.state.answers);
+        
     }
 
     render = () =>{
@@ -96,7 +95,7 @@ class QuizPage extends Component {
                                     ans2 = {index.answer[1]}
                                     ans3 = {index.answer[2]}
                                     ans4 = {index.answer[3]}
-                                    clicked = {(event) => this.questionButtonHandler(event)}
+                                    clicked = {(event) => this.questionButtonHandler(event, i)}
                                 />
                             )
                         })}
