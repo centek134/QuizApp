@@ -3,7 +3,7 @@
     width: 100%;
     background-color: rgb(245, 238, 225);
 }
-.grid{
+.grid-menu{
     margin: 0 auto;
     width: 80%;
     display: grid;
@@ -13,3 +13,21 @@
     column-gap: 10px;
 
 }
+.QuizPage .questions-page{
+    text-align: center;
+}
+.QuizPage .questions-page .finish-btn{
+    padding: 10px 40px;
+    margin-bottom: 20px;
+    font-size: 24px;
+    background-color: rgb(31, 16, 46);
+    color: #fff;
+    transition: 0.9s;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.QuizPage .questions-page .finish-btn:hover{
+    background-color: rgb(255, 150, 51);
+}
+
