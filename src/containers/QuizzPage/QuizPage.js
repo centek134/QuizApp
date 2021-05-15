@@ -30,8 +30,9 @@ class QuizPage extends Component {
         category: [],
         questionsData: [],
         startQuiz: false,
-        answers:new Array(10)
-    }
+        correctAnswers:[],
+        userAnswers:new Array(10)
+    };
 
     replaceHtmlEntities = (word) => {
        return word
@@ -39,16 +40,19 @@ class QuizPage extends Component {
        .replace(/&#039;/g, "'")
        .replace(/&amp;/g,"&")
        .replace(/&rsque;/g,"'")
-       .replace(/&oacute;/g, 'Ó');
-        
-    }
+       .replace(/&oacute;/g, 'Ó')
+       .replace(/&eacute;/g, "é");
+    };
 
     fetchQuestions = (questionId) => {
         fetch(`https://opentdb.com/api.php?amount=10&category=${questionId}&type=multiple`)
         .then(result => result.json())
         .then(data => {
             console.log(data);
+
             let questionInfo = [];
+            let goodAnswers = [];
+
             for(let item of data.results){
                 questionInfo.push({
                     question: this.replaceHtmlEntities(item.question),
@@ -57,23 +61,42 @@ class QuizPage extends Component {
                         ...item.incorrect_answers.map(i => this.replaceHtmlEntities(i))
                     ]
                 });
+                goodAnswers.push(item.correct_answer)
             };
             this.setState({
                 questionsData: questionInfo,
+                correctAnswers:goodAnswers,
                 startQuiz: true
             });
+            console.log(this.state.correctAnswers)
         });
     };
 
     questionButtonHandler = (e,i) => {
-        console.log(i,e.target.value)
-        e.target.classList.toggle("active");
-        let items = [...this.state.answers];
+        this.questionBtnClassHandler(e);
+        let items = [...this.state.userAnswers];
         items[i] = e.target.value;
-        this.setState({answers:items});
-        console.log(this.state.answers);
-        
-    }
+        this.setState({userAnswers:items});
+    };
+
+    questionBtnClassHandler = (e) => {
+        let children = e.target.parentElement.childNodes;
+        for(let child of children){
+            child.classList.remove("active");
+        };
+        e.target.classList.add("active");
+    };
+
+    finishQuiz = () => {
+        let points = 0;
+        for(let i = 0; i<10; i++){
+            if(this.state.correctAnswers[i] === this.state.userAnswers[i]){
+                points++;
+            };
+        };
+        this.setState({startQuiz:false});
+        console.log("moje pkt = " + points)
+    };
 
     render = () =>{
         
@@ -84,34 +107,30 @@ class QuizPage extends Component {
                 {
                     this.state.startQuiz? 
                     <main className = "questions-page">
-                        {this.state.questionsData.map( (index,i) => {
+                        {this.state.questionsData.map((index,i) => {
                             return(
                                 <Question
                                     key ={i}
                                     num = {i + 1}
                                     question = {index.question}
                                     ans = {index.answer}
-                                    ans1 = {index.answer[0]}
-                                    ans2 = {index.answer[1]}
-                                    ans3 = {index.answer[2]}
-                                    ans4 = {index.answer[3]}
                                     clicked = {(event) => this.questionButtonHandler(event, i)}
                                 />
-                            )
+                            );
                         })}
+                        <button className = "finish-btn" onClick = {() => this.finishQuiz()}>Finish</button>
                     </main>
                      :
-                    <main className = 'grid'>
+                    <main className = 'grid-menu'>
                         {this.state.category.map(index => {
                         return(
-                        <div key = {index.id} className = "grid-item">
+                        <div key = {index.id} className = "grid-menu-item">
                             <CategoryCard categoryName = {index.name} click = {() => this.fetchQuestions(index.id)}/>
                         </div>
                         );
                         })}
                 </main>
                 }
-                <button onClick = {() => this.setState({startQuiz: !this.state.startQuiz})}> fetch data test</button>
             </div>
         );
     };
