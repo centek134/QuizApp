@@ -3,6 +3,7 @@ import './QuizPage.css';
 import Question from '../../components/Question/Question.js';
 import CategoryCard from '../../components/CategoryCard/CategoryCard.js';
 import Header from '../../components/Header/Header.js';
+import ScoreModal from '../ScoreModal/ScoreModal'
 
 
 
@@ -29,7 +30,9 @@ class QuizPage extends Component {
     state ={
         category: [],
         questionsData: [],
+        quizPoints:0,
         startQuiz: false,
+        showModal:false,
         correctAnswers:[],
         userAnswers:new Array(10)
     };
@@ -94,15 +97,24 @@ class QuizPage extends Component {
                 points++;
             };
         };
-        this.setState({startQuiz:false});
-        console.log("moje pkt = " + points)
+        this.setState({
+            quizPoints: points,
+            startQuiz:false,
+            showModal:true
+        });
     };
 
     render = () =>{
         
-
         return(
             <div className = "QuizPage">
+                     {
+                         this.state.showModal?
+                         <ScoreModal completion = {this.state.quizPoints}/> :
+                         null
+                     }
+
+                     
                 <Header/>
                 {
                     this.state.startQuiz? 
@@ -123,11 +135,11 @@ class QuizPage extends Component {
                      :
                     <main className = 'grid-menu'>
                         {this.state.category.map(index => {
-                        return(
-                        <div key = {index.id} className = "grid-menu-item">
-                            <CategoryCard categoryName = {index.name} click = {() => this.fetchQuestions(index.id)}/>
-                        </div>
-                        );
+                            return(
+                            <div key = {index.id} className = "grid-menu-item">
+                                <CategoryCard categoryName = {index.name} click = {() => this.fetchQuestions(index.id)}/>
+                            </div>
+                            );
                         })}
                 </main>
                 }
