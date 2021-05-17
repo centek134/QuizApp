@@ -1,0 +1,56 @@
+.score-modal{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.226);
+}
+.score-modal .container{
+    text-align: center;
+    width: 350px;
+    background-color: #fff;
+    border-radius: 15px;
+}
+
+.score-modal .container h2{
+    padding: 20px 0;
+}
+.score-modal .container h3{
+    padding: 0 0 30px 0;
+}
+.score-modal .container .flex-btns{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 10px 0 10px 0;
+}
+.score-modal .container .flex-btns button{
+    padding: 15px 10px;
+    font-size: 18px;
+    font-weight: 700 ;
+    color: #fff;
+    background-color: rgb(119, 206, 79);
+    border: 2px solid transparent;
+    border-radius: 5px;
+    transition: 0.5s;
+    outline: none;
+    cursor: pointer;
+}    
+.score-modal .container .flex-btns button:first-child{
+    background-color: rgb(255, 79, 88) ;
+}
+.score-modal .container .flex-btns button:first-child:hover{
+    background-color: #fff ;
+    color: rgb(255, 79, 88);
+    border: 2px solid rgb(255, 79, 88);
+}
+.score-modal .container .flex-btns button:hover:last-child{
+    background-color: #fff ;
+    color: rgb(119, 206, 79);
+    border: 2px solid rgb(119, 206, 79);
+}
