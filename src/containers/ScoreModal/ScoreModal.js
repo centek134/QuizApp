@@ -27,7 +27,7 @@ const ScoreModal = (props) =>{
                 <h3>Score: {props.completion} / 10</h3>
                 <div className = 'flex-btns'>
                     <button onClick = {props.check}>Check answers</button>
-                    <button onClick = {props.continue}>Continue</button>
+                    <button onClick = {props.continueBtn}>Continue</button>
                 </div>
             </div>
         </div>
