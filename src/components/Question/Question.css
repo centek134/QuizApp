@@ -33,7 +33,14 @@
     border-radius: 5px;
     transition: 0.5s;
     cursor: pointer;
+    outline: none;
 }
  .question .btns button:hover{
      background-color: rgb(255, 150, 51);
+    }
+.question .btns button.active {
+        background-color: rgb(255, 150, 51);
+ }
+ .question .btns button.correct{
+     background-color: rgb(148, 228, 1);
  }
