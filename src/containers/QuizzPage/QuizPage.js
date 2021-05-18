@@ -6,9 +6,6 @@ import Header from '../../components/Header/Header.js';
 import ScoreModal from '../ScoreModal/ScoreModal'
 
 
-
-
-
 class QuizPage extends Component {
 
 
@@ -21,9 +18,8 @@ class QuizPage extends Component {
 
             for(let item of data.trivia_categories){
                 category.push(item);
-            }
+            };
             this.setState({category : category});
-            console.log(data)
         });
     };
 
@@ -51,7 +47,7 @@ class QuizPage extends Component {
         fetch(`https://opentdb.com/api.php?amount=10&category=${questionId}&type=multiple`)
         .then(result => result.json())
         .then(data => {
-            console.log(data);
+            console.log('data' , data);
 
             let questionInfo = [];
             let goodAnswers = [];
@@ -64,15 +60,29 @@ class QuizPage extends Component {
                         ...item.incorrect_answers.map(i => this.replaceHtmlEntities(i))
                     ]
                 });
-                goodAnswers.push(item.correct_answer)
+                goodAnswers.push(this.replaceHtmlEntities(item.correct_answer));
             };
+            
+            questionInfo.map(item => {
+                return this.shuffleArray(item.answer)
+            });
+            
+            console.log('shuffled',questionInfo);
             this.setState({
                 questionsData: questionInfo,
                 correctAnswers:goodAnswers,
                 startQuiz: true
             });
-            console.log(this.state.correctAnswers)
         });
+    };
+
+    shuffleArray = (array) => {
+        for (let i = array.length - 1; i >= 0; i--) {
+               const randomIndex = Math.floor(Math.random() * (i + 1));
+               array.push(array[randomIndex]);
+               array.splice(randomIndex, 1);
+           };
+        return array;
     };
 
     questionButtonHandler = (e,i) => {
@@ -113,8 +123,6 @@ class QuizPage extends Component {
                          <ScoreModal completion = {this.state.quizPoints}/> :
                          null
                      }
-
-                     
                 <Header/>
                 {
                     this.state.startQuiz? 
