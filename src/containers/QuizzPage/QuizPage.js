@@ -40,7 +40,12 @@ class QuizPage extends Component {
        .replace(/&amp;/g,"&")
        .replace(/&rsque;/g,"'")
        .replace(/&oacute;/g, 'Ó')
-       .replace(/&eacute;/g, "é");
+       .replace(/&eacute;/g, "é")
+       .replace(/(&Auml;|&auml;)/g,'ä')
+       .replace(/(&Ouml;|&ouml;)/g,'ö')
+       .replace(/(&Uuml;|&uuml;)/g, 'ü')
+       .replace(/&ntilde;/g, "ñ")
+       .replace(/&shy:/g, '-');
     };
 
     fetchQuestions = (questionId) => {
@@ -109,10 +114,34 @@ class QuizPage extends Component {
         };
         this.setState({
             quizPoints: points,
-            startQuiz:false,
             showModal:true
         });
+        setTimeout(() => {
+             let el = document.querySelector(".score-modal .container");
+                el.scrollIntoView();
+            
+        },300)
     };
+
+    checkCorrectAnswers = () => {
+            let counter = 0;
+        let btn = document.querySelectorAll('button');
+        for(let i = 2; i < btn.length; i++){
+            if(i % 4 === 2 && i !== 2){
+                counter++;
+            };
+            if(btn[i].innerHTML === this.state.correctAnswers[counter] || btn[i].innerText === this.state.correctAnswers[counter]){
+                btn[i].classList.add("correct");
+            };
+        };
+       
+        console.log(btn);
+        this.setState({
+            showModal:false,
+        });
+    };
+
+    
 
     render = () =>{
         
@@ -120,7 +149,14 @@ class QuizPage extends Component {
             <div className = "QuizPage">
                      {
                          this.state.showModal?
-                         <ScoreModal completion = {this.state.quizPoints}/> :
+                         <ScoreModal 
+                         completion = {this.state.quizPoints}
+                         check = {this.checkCorrectAnswers}
+                         continueBtn = {() => {this.setState({
+                             startQuiz:false,
+                             showModal:false
+                         })}}
+                         /> :
                          null
                      }
                 <Header/>
