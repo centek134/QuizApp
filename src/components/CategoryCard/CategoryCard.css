@@ -14,3 +14,35 @@
 .cat-card:hover{
     background-color: rgb(6, 81, 156);
 }
+@media only screen and (min-width: 2000px){
+    .cat-card{
+        font-size: 33px;
+        height: 165px;
+    }
+}
+@media only screen and (min-width: 2300px){
+    .cat-card{
+        font-size: 40px;
+        height: 200px;
+    }
+}
+
+@media only screen and (min-width: 2560px){
+    .cat-card{
+        font-size: 47px;
+        height: 235px;
+    }
+}
+@media only screen and (min-width: 3000px){
+    .cat-card{
+        font-size: 54px;
+        height: 270px;
+    }
+}
+@media only screen and (min-width: 3300px){
+    .cat-card{
+        font-size: 61px;
+        height: 305px;
+    }
+}
+    
