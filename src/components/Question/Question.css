@@ -44,3 +44,75 @@
  .question .btns button.correct{
      background-color: rgb(148, 228, 1);
  }
+
+@media only screen and (min-width: 2100px){
+    .question{
+        max-width: 1300px;
+    }
+    .question h3{
+        font-size: 32px;
+    }
+    .question h2{
+        font-size: 28px;
+    }
+    .question .btns button{
+        font-size: 26px;
+    }
+}
+
+@media only screen and (min-width: 2560px){
+    .question{
+        max-width: 1300px;
+    }
+    .question h3{
+        font-size: 36px;
+    }
+    .question h2{
+        font-size: 32px;
+    }
+    .question .btns button{
+        font-size: 30px;
+    }
+}
+@media only screen and (min-width: 3000px){
+    .question{
+        max-width: 1500px;
+    }
+    .question h3{
+        font-size: 42px;
+    }
+    .question h2{
+        font-size: 38px;
+    }
+    .question .btns button{
+        font-size: 36px;
+    }
+}
+@media only screen and (min-width: 3300px){
+    .question{
+        max-width: 1600px;
+    }
+    .question h3{
+        font-size: 48px;
+    }
+    .question h2{
+        font-size: 44px;
+    }
+    .question .btns button{
+        font-size: 42px;
+    }
+}
+@media only screen and (min-width: 3500px){
+    .question{
+        max-width: 1700px;
+    }
+    .question h3{
+        font-size: 54px;
+    }
+    .question h2{
+        font-size: 50px;
+    }
+    .question .btns button{
+        font-size: 48px;
+    }
+}

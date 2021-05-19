@@ -2,15 +2,18 @@
     position: relative;
     width: 100%;
     background-color: rgb(245, 238, 225);
+    min-height: 100vh;
 }
 .grid-menu{
-    margin: 0 auto;
     width: 80%;
+    min-height: 80%;
+    margin: 0 auto;
+    padding: 0 0 50px 0;
     display: grid;
     grid-template-columns: repeat(4,1fr);
     grid-template-rows: repeat(6,1fr);
-    row-gap: 10px;
     column-gap: 10px;
+    row-gap: 10px;
 
 }
 .QuizPage .questions-page{
@@ -31,3 +34,22 @@
     background-color: rgb(255, 150, 51);
 }
 
+@media only screen and (max-width: 1100px){
+    .grid-menu{
+        grid-template-columns: repeat(3,1fr);
+        grid-template-rows: repeat(8,1fr);
+    }
+}
+@media only screen and (max-width:800px){
+    .grid-menu{
+        grid-template-columns: repeat(2,1fr);
+        grid-template-rows: repeat(12,1fr);
+    }
+}
+@media only screen and (max-width:450px){
+    .grid-menu{
+        width: 70%;
+        grid-template-columns: repeat(1,1fr);
+        grid-template-rows: repeat(24,1fr);
+    }
+}
