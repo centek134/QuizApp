@@ -10,7 +10,34 @@
     background-position: center;
     background-repeat: no-repeat;
 }
-.logo .title{
+.head .logo .title{
+    cursor: pointer;
     color: rgb(245, 238, 225);
     text-align: center;
+}
+@media only screen and (min-width: 2300px){
+    .head{
+        height: 190px;
+    }
+    .head .logo{
+        width: 500px;
+        height: 190px;
+        background-image: url('../../images//Path-4.png');
+    }
+    .head .logo .title{
+        font-size: 60px;
+    }
+}
+@media only screen and (min-width: 3200px){
+    .head{
+        height: 300px;
+    }
+    .head .logo{
+        width: 800px;
+        height: 300px;
+        background-image: url('../../images//Path-5.png');
+    }
+    .head .logo .title{
+        font-size: 90px;
+    }
 }
