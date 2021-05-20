@@ -144,7 +144,6 @@ class QuizPage extends Component {
     
 
     render = () =>{
-        
         return(
             <div className = "QuizPage">
                      {
@@ -159,7 +158,10 @@ class QuizPage extends Component {
                          /> :
                          null
                      }
-                <Header/>
+                <Header click = {() => {this.setState({
+                             startQuiz:false,
+                             showModal:false
+                         })}}/>
                 {
                     this.state.startQuiz? 
                     <main className = "questions-page">
@@ -191,5 +193,4 @@ class QuizPage extends Component {
         );
     };
 };
-
 export default QuizPage;
