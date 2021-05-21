@@ -8,7 +8,6 @@ import ScoreModal from '../ScoreModal/ScoreModal'
 
 class QuizPage extends Component {
 
-
     componentDidMount = () => {
         fetch('https://opentdb.com/api_category.php')
         .then(result => result.json())
@@ -52,8 +51,6 @@ class QuizPage extends Component {
         fetch(`https://opentdb.com/api.php?amount=10&category=${questionId}&type=multiple`)
         .then(result => result.json())
         .then(data => {
-            console.log('data' , data);
-
             let questionInfo = [];
             let goodAnswers = [];
 
@@ -72,7 +69,7 @@ class QuizPage extends Component {
                 return this.shuffleArray(item.answer)
             });
             
-            console.log('shuffled',questionInfo);
+            
             this.setState({
                 questionsData: questionInfo,
                 correctAnswers:goodAnswers,
@@ -134,14 +131,10 @@ class QuizPage extends Component {
                 btn[i].classList.add("correct");
             };
         };
-       
-        console.log(btn);
         this.setState({
             showModal:false,
         });
     };
-
-    
 
     render = () =>{
         return(
